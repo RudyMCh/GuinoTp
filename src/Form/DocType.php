@@ -2,27 +2,32 @@
 
 namespace App\Form;
 
+use App\Entity\Doc;
 use App\Entity\User;
-use App\Entity\Profession;
+use App\Entity\Lobby;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class UserType extends AbstractType
+
+
+
+class DocType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lastname')
-            ->add('firstname')
-            ->add('email')
-            ->add('phone')
-            ->add('status')
+            ->add('imageFile', VichImageType::class)
             ->add('createdAt')
-            ->add('password')
-            ->add('profession', EntityType::class,[
-                'class' => Profession::class,
+            ->add('user', EntityType::class,[
+                'class' => User::class,
+                'choice_label' => 'lastname'
+            ])
+            ->add('lobby', EntityType::class,[
+                'class' => Lobby::class,
                 'choice_label' => 'name'
             ])
         ;
@@ -31,7 +36,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Doc::class,
         ]);
     }
 }

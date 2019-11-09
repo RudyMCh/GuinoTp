@@ -53,21 +53,23 @@ class Lobby
      */
     private $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\File", mappedBy="lobby")
-     */
-    private $files;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby")
      */
     private $messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Doc", mappedBy="lobby")
+     */
+    private $docs;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->docs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,36 +175,7 @@ class Lobby
         return $this;
     }
 
-    /**
-     * @return Collection|File[]
-     */
-    public function getFiles(): Collection
-    {
-        return $this->files;
-    }
 
-    public function addFile(File $file): self
-    {
-        if (!$this->files->contains($file)) {
-            $this->files[] = $file;
-            $file->setLobby($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFile(File $file): self
-    {
-        if ($this->files->contains($file)) {
-            $this->files->removeElement($file);
-            // set the owning side to null (unless already changed)
-            if ($file->getLobby() === $this) {
-                $file->setLobby(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Message[]
@@ -229,6 +202,37 @@ class Lobby
             // set the owning side to null (unless already changed)
             if ($message->getLobby() === $this) {
                 $message->setLobby(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Doc[]
+     */
+    public function getDocs(): Collection
+    {
+        return $this->docs;
+    }
+
+    public function addDoc(Doc $doc): self
+    {
+        if (!$this->docs->contains($doc)) {
+            $this->docs[] = $doc;
+            $doc->setLobby($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDoc(Doc $doc): self
+    {
+        if ($this->docs->contains($doc)) {
+            $this->docs->removeElement($doc);
+            // set the owning side to null (unless already changed)
+            if ($doc->getLobby() === $this) {
+                $doc->setLobby(null);
             }
         }
 

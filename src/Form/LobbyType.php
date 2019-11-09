@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Lobby;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class LobbyType extends AbstractType
 {
@@ -18,7 +21,6 @@ class LobbyType extends AbstractType
             ->add('address')
             ->add('zipcode')
             ->add('active')
-            ->add('user')
         ;
     }
 

@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}File index{% endblock %}
+{% block title %}Doc index{% endblock %}
 
 {% block body %}
-    <h1>File index</h1>
+    <h1>Doc index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Filename</th>
                 <th>CreatedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for file in files %}
+        {% for doc in docs %}
             <tr>
-                <td>{{ file.id }}</td>
-                <td>{{ file.name }}</td>
-                <td>{{ file.createdAt ? file.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ doc.id }}</td>
+                <td>{{ doc.filename }}</td>
+                <td>{{ doc.createdAt ? doc.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('file_show', {'id': file.id}) }}">show</a>
-                    <a href="{{ path('file_edit', {'id': file.id}) }}">edit</a>
+                    <a href="{{ path('doc_show', {'id': doc.id}) }}">show</a>
+                    <a href="{{ path('doc_edit', {'id': doc.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('file_new') }}">Create new</a>
+    <a href="{{ path('doc_new') }}">Create new</a>
 {% endblock %}

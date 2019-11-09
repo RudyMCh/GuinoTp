@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Doc{% endblock %}
+
+{% block body %}
+    <h1>Doc</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ doc.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ doc.filename }}</th>
+                <td><img src="{{ vich_uploader_asset(doc, 'imageFile') }}" height="150" width="150" class="rounded mx-auto d-block" alt="{{ doc.filename }}"></td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ doc.createdAt ? doc.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('doc_index') }}">back to list</a>
+
+    <a href="{{ path('doc_edit', {'id': doc.id}) }}">edit</a>
+
+    {{ include('doc/_delete_form.html.twig') }}
+{% endblock %}

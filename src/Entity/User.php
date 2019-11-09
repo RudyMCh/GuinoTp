@@ -53,10 +53,6 @@ class User
      */
     private $lobbies;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\File", mappedBy="user")
-     */
-    private $files;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user")
@@ -74,11 +70,17 @@ class User
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Doc", mappedBy="user")
+     */
+    private $docs;
+
     public function __construct()
     {
         $this->lobbies = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->docs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,37 +188,7 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection|File[]
-     */
-    public function getFiles(): Collection
-    {
-        return $this->files;
-    }
-
-    public function addFile(File $file): self
-    {
-        if (!$this->files->contains($file)) {
-            $this->files[] = $file;
-            $file->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFile(File $file): self
-    {
-        if ($this->files->contains($file)) {
-            $this->files->removeElement($file);
-            // set the owning side to null (unless already changed)
-            if ($file->getUser() === $this) {
-                $file->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
+ 
     /**
      * @return Collection|Message[]
      */
@@ -268,6 +240,37 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Doc[]
+     */
+    public function getDocs(): Collection
+    {
+        return $this->docs;
+    }
+
+    public function addDoc(Doc $doc): self
+    {
+        if (!$this->docs->contains($doc)) {
+            $this->docs[] = $doc;
+            $doc->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDoc(Doc $doc): self
+    {
+        if ($this->docs->contains($doc)) {
+            $this->docs->removeElement($doc);
+            // set the owning side to null (unless already changed)
+            if ($doc->getUser() === $this) {
+                $doc->setUser(null);
+            }
+        }
 
         return $this;
     }

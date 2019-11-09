@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lobby index{% endblock %}
+
+{% block body %}
+    <h1>Lobby index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Zipcode</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lobby in lobbies %}
+            <tr>
+                <td>{{ lobby.id }}</td>
+                <td>{{ lobby.createdAt ? lobby.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lobby.name }}</td>
+                <td>{{ lobby.city }}</td>
+                <td>{{ lobby.address }}</td>
+                <td>{{ lobby.zipcode }}</td>
+                <td>{{ lobby.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('lobby_show', {'id': lobby.id}) }}">show</a>
+                    <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('lobby_new') }}">Create new</a>
+{% endblock %}

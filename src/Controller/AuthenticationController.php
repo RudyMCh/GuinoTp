@@ -52,6 +52,9 @@ class AuthenticationController extends AbstractController{
                         if($password == $passwordVerif){
                             $session->set('account', $user);
                             return $this->render('login.html.twig', array('success' => true));
+                        }else{
+                            return $this->render('login.html.twig', array('errorPassword' => true));
+
                         }
                     }
                 }

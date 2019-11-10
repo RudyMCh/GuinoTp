@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+<div class="container">
+    <h1>mes salons</h1>
+    <ul>
+        {% for lobby in myLobbies %}
+        <li>
+            {{ lobby.name }} {{ lobby.city }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

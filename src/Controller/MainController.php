@@ -17,6 +17,20 @@ class MainController extends AbstractController{
      */
     public function index()
     {
+        // $ur = $this->getDoctrine()->getRepository(User::class);
+        // $lr = $this->getDoctrine()->getRepository(Lobby::class);
+        // $user = $ur->findOneById();
+        // dump($user);
+        // $lobby = $lr->findOneById(4);
+        // dump($lobby);
+        // foreach($lobby as $lob){
+        //     dump($lob->getName());
+        // }
+        // $lobby->addUser($user);
+        // dump($lobby->getUsers());
+        // $em = $this->getDoctrine()->getManager();
+        // $em->persist($lobby);
+        // $em->flush();
         return $this->render('index.html.twig');
     }
 
@@ -62,6 +76,44 @@ class MainController extends AbstractController{
         $myLobbies = $user->getLobby();
 
         return $this->render('myLobbies.html.twig', ["myLobbies" => $myLobbies]);
+    }
+
+    /**
+     * @Route("/associer-utilisateur", name="assoc")
+     */
+    public function assoc(Request $request)
+    {   
+        $session = $this->get('session');
+        $user = $session->get('account');
+        $ur = $this->getDoctrine()->getRepository(User::class);
+        $lr = $this->getDoctrine()->getRepository(Lobby::class);
+        $users = $ur->findAll();
+        $lobbies = $lr->findAll();
+
+        if($request->isMethod('POST')){
+            $userId = $request->request->get('id');
+            $lobbyName = $request->request->get('lobby');
+            dump($lobbyName);
+            $userLobby = $ur->findOneById($userId);
+            $lobby = $lr->findOneByName($lobbyName);
+            dump($lobby);
+            dump($userLobby);
+            $lobby->addUser($userLobby);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($lobby);
+            $em->persist($userLobby);
+            $em->flush();
+
+            return $this->render("assocUserLobby.html.twig", [
+                "lobbies" => $lobbies,
+                "users" => $users,
+                "success" => true
+            ]);
+        }
+        return $this->render("assocUserLobby.html.twig", [
+            "lobbies" => $lobbies,
+            "users" => $users
+        ]);
     }
 
 

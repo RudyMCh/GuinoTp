@@ -49,12 +49,6 @@ class User
     private $createdAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Lobby", mappedBy="user")
-     */
-    private $lobbies;
-
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user")
      */
     private $messages;
@@ -76,17 +70,16 @@ class User
     private $docs;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Lobby", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Lobby", mappedBy="user")
      */
-    private $lobby;
+    private $lobbies;
 
     public function __construct()
     {
-        $this->lobbies = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
-        $this->lobby = new ArrayCollection();
+        $this->lobbies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,34 +155,6 @@ class User
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Lobby[]
-     */
-    public function getLobbies(): Collection
-    {
-        return $this->lobbies;
-    }
-
-    public function addLobby(Lobby $lobby): self
-    {
-        if (!$this->lobbies->contains($lobby)) {
-            $this->lobbies[] = $lobby;
-            $lobby->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLobby(Lobby $lobby): self
-    {
-        if ($this->lobbies->contains($lobby)) {
-            $this->lobbies->removeElement($lobby);
-            $lobby->removeUser($this);
-        }
 
         return $this;
     }
@@ -284,8 +249,28 @@ class User
     /**
      * @return Collection|Lobby[]
      */
-    public function getLobby(): Collection
+    public function getLobbies(): Collection
     {
-        return $this->lobby;
+        return $this->lobbies;
+    }
+
+    public function addLobby(Lobby $lobby): self
+    {
+        if (!$this->lobbies->contains($lobby)) {
+            $this->lobbies[] = $lobby;
+            $lobby->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLobby(Lobby $lobby): self
+    {
+        if ($this->lobbies->contains($lobby)) {
+            $this->lobbies->removeElement($lobby);
+            $lobby->removeUser($this);
+        }
+
+        return $this;
     }
 }

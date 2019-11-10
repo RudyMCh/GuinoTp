@@ -60,17 +60,16 @@ class Lobby
     private $docs;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="lobby")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="lobbies")
      */
-    private $users;
+    private $user;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,16 +214,15 @@ class Lobby
     /**
      * @return Collection|User[]
      */
-    public function getUsers(): Collection
+    public function getUser(): Collection
     {
-        return $this->users;
+        return $this->user;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addLobby($this);
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
         }
 
         return $this;
@@ -232,11 +230,11 @@ class Lobby
 
     public function removeUser(User $user): self
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeLobby($this);
+        if ($this->user->contains($user)) {
+            $this->user->removeElement($user);
         }
 
         return $this;
     }
+
 }

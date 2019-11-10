@@ -20,6 +20,7 @@ class MessageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Message::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

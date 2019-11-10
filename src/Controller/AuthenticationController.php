@@ -32,18 +32,18 @@ class AuthenticationController extends AbstractController{
                 $request->isMethod('POST')
             )
             {
-                $email=$request->request->get('email');
+                $phone=$request->request->get('phone');
                 $password=$request->request->get('password');
-                if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    $errors['email'] =  true;
+                if(!preg_match('#^.[0-9]{9}$#', $phone)){
+                    $errors['phone'] =  true;
                 }
-                if(!preg_match('#^.{8,320}$#i', $password)){
+                if(!preg_match('#^.{5,320}$#i', $password)){
                     $errors['password'] = true;
                 }
                 if(!isset($errors))
                 {
                     $ur = $this->getDoctrine()->getRepository(User::class);
-                    $user = $ur->findOneByEmail($email);
+                    $user = $ur->findOneByPhone($phone);
                     dump($user);
                     if(!empty($user))
                     {

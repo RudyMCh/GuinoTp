@@ -13,10 +13,10 @@
         {% else %}
         <form class="form-group col-12 col-lg-4" action="{{ path('login') }} " method="POST">
             <fieldset>
-                <label for="email">email</label>
-                <input class="form-control fas fa-sign-in-alt" type="text" name="email" placeholder="email">
-                {% if errors.email is defined %}
-                <p class="msgError"><i class="fas fa-exclamation-circle"></i> Email invalide</p>
+                <label for="phone">Téléphone</label>
+                <input class="form-control" type="text" name="phone" placeholder="phone">
+                {% if errors.phone is defined %}
+                <p class="msgError"><i class="fas fa-exclamation-circle"></i> Téléphone invalide</p>
                 {% endif %}
                 <label for="password">password</label>
                 <input class="form-control" type="password" name="password" placeholder="password">

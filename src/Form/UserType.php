@@ -26,6 +26,7 @@ class UserType extends AbstractType
                 'class' => Profession::class,
                 'choice_label' => 'name'
             ])
+            ->add('password')
         ;
     }
 
@@ -33,6 +34,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

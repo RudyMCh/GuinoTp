@@ -36,6 +36,7 @@ class DocType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Doc::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

@@ -37,8 +37,6 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setCreatedAt(new DateTime());
-            $password = $request->request->get('password');
-            $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

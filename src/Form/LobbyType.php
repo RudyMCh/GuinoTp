@@ -27,6 +27,7 @@ class LobbyType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Lobby::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

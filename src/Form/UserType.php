@@ -19,6 +19,7 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('email')
             ->add('phone')
+            ->add('password')
             ->add('status')
             ->add('profession', EntityType::class,[
                 'class' => Profession::class,
@@ -32,6 +33,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

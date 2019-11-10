@@ -52,5 +52,17 @@ class MainController extends AbstractController{
 
     }
 
+    /**
+     * @Route("mes-salons", name="myLobbies")
+     */
+    public function myLobbies()
+    {
+        $session = $this->get('session');
+        $user = $session->get('account');
+        $myLobbies = $user->getLobby();
+
+        return $this->render('myLobbies.html.twig', ["myLobbies" => $myLobbies]);
+    }
+
 
 }

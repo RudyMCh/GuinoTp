@@ -8,7 +8,8 @@
 
         {% if success is defined %}
         <p class="msgSuccess">Vous êtes connecté   <i class="fas fa-check"></i></p>
-        
+        {% elseif errorPassword is defined %}
+            <p class="msgError">erreur de mot de passe   <i class="fas fa-check"></i></p>
         {% else %}
         <form class="form-group col-12 col-lg-4" action="{{ path('login') }} " method="POST">
             <fieldset>

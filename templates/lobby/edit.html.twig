@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Lobby{% endblock %}
+{% block title %}Modifier le salon{% endblock %}
 
 {% block body %}
-    <h1>Edit Lobby</h1>
+    <h1>Modifier le salon</h1>
 
-    {{ include('lobby/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('lobby/_form.html.twig', {'button_label': 'Mettre à jour et sauvegarder'}) }}
 
-    <a href="{{ path('lobby_index') }}">back to list</a>
+    <a href="{{ path('lobby_index') }}" style="padding-left: 12px">Retour liste salon</a>
 
     {{ include('lobby/_delete_form.html.twig') }}
 {% endblock %}

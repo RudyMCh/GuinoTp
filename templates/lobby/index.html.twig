@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lobby index{% endblock %}
+{% block title %}Liste des salons{% endblock %}
 
 {% block body %}
-    <h1>Lobby index</h1>
+    <h1>Liste des salons</h1>
 
     <table class="table">
         <thead>
@@ -27,19 +27,19 @@
                 <td>{{ lobby.city }}</td>
                 <td>{{ lobby.address }}</td>
                 <td>{{ lobby.zipcode }}</td>
-                <td>{{ lobby.active ? 'Yes' : 'No' }}</td>
+                <td>{{ lobby.active ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('lobby_show', {'id': lobby.id}) }}">show</a>
-                    <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">edit</a>
+                    <a href="{{ path('lobby_show', {'id': lobby.id}) }}">Voir</a>
+                    <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas de salons à afficher</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('lobby_new') }}">Create new</a>
+    <a href="{{ path('lobby_new') }}">Créer nouveau</a>
 {% endblock %}

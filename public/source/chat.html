@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chat btp</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- bypass css, use style -->
+    <!-- link rel="stylesheet" href="style-chat.css"> -->
+    <style>.bg-color-cyan{ background-color:#7386D5; }</style>
+    </head>
+<body>
+
+    <!-- https://getbootstrap.com/docs/4.3/utilities/spacing/#horizontal-centering
+    [x- y- for left right top bottom absolutes] [d-flex] -->
+
+<!-- declaration main div viewportHeight-100 -->
+<div class="container-fluid vh-100">
+
+    <!-- old header -->
+    <!-- <div class="row">
+        <div class="col-12 bg-color-cyan text-white">
+            <h1 class="text-center">salon</h1>
+            <div class="row pt-3 pb-3 mx-auto">
+                <div class="col-10 row mx-auto">
+                    <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#1</div>
+                    <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#2</div>
+                    <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#3</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- big-div height : 100% of 100viewport-height -->
+    <div class="row h-100">
+
+        <!-- users -->
+        <div class="col-2 bg-color-cyan text-center pt-3 text-white">
+            <h2 class="text-center">users</h2> 
+            ici ce sont les utilisateurs Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam aperiam eum perspiciatis enim! Iste, soluta laborum! Mollitia maxime vero ipsa, eos repellat modi, quae quis eligendi animi corrupti ullam facere.
+        </div> 
+
+    <!-- footer and textarea -->
+        <div class="col-10 bg-white pt-3 text-black">
+        <!-- textarea -->
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores tempore nesciunt placeat amet officia sed suscipit illum alias, doloribus sit? Fuga officiis, voluptates ad rem quaerat corporis expedita culpa ipsam!
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam aperiam eum perspiciatis enim! Iste, soluta laborum! Mollitia maxime vero ipsa, eos repellat modi, quae quis eligendi animi corrupti ullam facere.
+            </p>
+        <!-- footer ?fixed-bottom -->
+            <div class="bg-color-cyan offset-2 fixed-bottom">
+                <form action="" method="" class="form-group basic-textarea row pt-3 pb-3 col-10 offset-1">
+                    <input type="text" class="form-control bg-white text-black col-10 pl-5" placeholder="Message">
+                    <span class="input-group-btn pl-2">
+                        <button type="submit" class="btn btn-info">Envoyer</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+
+    <!-- close h- bigdiv -->
+    </div>
+
+<!-- close maindiv -->
+</div>
+
+<!-- bootstrap jquery -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -66,7 +66,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -260,6 +260,10 @@ a.article:hover {
     transition: all 0.3s;
 }
 
+.addUserBtn a:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -321,3 +325,9 @@ a.article:hover {
         display: none;
     }
 }
+
+.btn-outline-success:hover{
+    background-color: (rgba(48, 190, 13, 0.1))
+}
+
+

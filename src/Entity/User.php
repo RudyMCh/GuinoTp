@@ -75,12 +75,18 @@ class User
      */
     private $docs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Lobby", inversedBy="users")
+     */
+    private $lobby;
+
     public function __construct()
     {
         $this->lobbies = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
+        $this->lobby = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,5 +279,13 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Lobby[]
+     */
+    public function getLobby(): Collection
+    {
+        return $this->lobby;
     }
 }

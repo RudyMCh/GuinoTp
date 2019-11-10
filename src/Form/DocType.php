@@ -21,7 +21,6 @@ class DocType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class)
-            ->add('createdAt')
             ->add('user', EntityType::class,[
                 'class' => User::class,
                 'choice_label' => 'lastname'

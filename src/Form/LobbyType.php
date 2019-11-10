@@ -15,7 +15,6 @@ class LobbyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
             ->add('name')
             ->add('city')
             ->add('address')

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \Datetime;
 
 /**
  * @Route("/lobby")
@@ -35,6 +36,7 @@ class LobbyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $lobby->setCreatedAt(new Datetime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($lobby);
             $entityManager->flush();

@@ -48,11 +48,6 @@ class Lobby
      */
     private $active;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="lobbies")
-     */
-    private $user;
-
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby")
@@ -64,12 +59,18 @@ class Lobby
      */
     private $docs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="lobby")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,34 +151,6 @@ class Lobby
     }
 
     /**
-     * @return Collection|User[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-        }
-
-        return $this;
-    }
-
-
-
-    /**
      * @return Collection|Message[]
      */
     public function getMessages(): Collection
@@ -234,6 +207,34 @@ class Lobby
             if ($doc->getLobby() === $this) {
                 $doc->setLobby(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addLobby($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeLobby($this);
         }
 
         return $this;

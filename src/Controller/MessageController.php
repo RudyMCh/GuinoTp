@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \DateTime;
 
 /**
  * @Route("/message")
@@ -35,6 +36,12 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $id = $request->request->get('id');
+            $lr= $this->getDoctrine()->getRepository(Lobby::class);
+            $lobby = $lr->findOneById($id);
+            $user = $session->get('account');
+            $message->setCreatedAt(new Datetime());
+            $message->setUser($user)->setLobby($lobby);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
             $entityManager->flush();

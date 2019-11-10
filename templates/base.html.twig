@@ -11,23 +11,26 @@
     </head>
     <body>
         
-        <header id="main-header">
-            <ul class="nav justify-content-end bg-primary text-white">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
-        </header>
-        <div class="container"></div>
-                {% block body %}
+        <div id="page">
+            <header id="main-header">
+                <ul class="nav justify-content-end bg-primary text-white">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </header>
+            <div class="container">
 
+                {% block body %}
+                
                 {% endblock %}
+            </div>
         </div>
             <footer>
                 <div class="nav-foot bg-primary text-white">

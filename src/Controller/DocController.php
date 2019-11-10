@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Doc;
 use App\Form\DocType;
+use \DateTime;
 use App\Repository\DocRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,11 +31,13 @@ class DocController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        
         $doc = new Doc();
         $form = $this->createForm(DocType::class, $doc);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $doc->setCreatedAt(new DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($doc);
             $entityManager->flush();

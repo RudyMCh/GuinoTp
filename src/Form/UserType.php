@@ -24,6 +24,7 @@ class UserType extends AbstractType
                 'class' => Profession::class,
                 'choice_label' => 'name'
             ])
+            ->add('password')
         ;
     }
 

@@ -78,13 +78,30 @@ span {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 270px;
+    max-width: 270px;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
 }
 
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+
+#sidebar.active .navtitle{
+    display: none; 
+}
+
+#sidebar.active .navsubtitle{
+    display: none; 
+}
+
+#sidebar.active .iconesubtitle{
+    color:black;
+}
 #sidebar.active {
     min-width: 80px;
     max-width: 80px;
@@ -98,6 +115,11 @@ span {
 
 #sidebar.active .sidebar-header strong {
     display: block;
+}
+
+#sidebar.active .sidebar-header strong img {
+    width: 50px; 
+    height: 30px;
 }
 
 #sidebar ul li a {

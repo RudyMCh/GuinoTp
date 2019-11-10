@@ -5,6 +5,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         {% block stylesheets %}
 {% endblock %}
@@ -13,8 +15,8 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Bootstrap Sidebar</h3>
-                    <strong>BS</strong>
+                    <h3>Guinot TP</h3>
+                    <strong><img src="https://www.rugbypontdeveyle.com/media/uploaded/sites/10551/partenaire/5c5764b988111_PASCALGUINOTTP.jpg" alt="logo"></strong>
                 </div>
     
                 <ul class="list-unstyled components">
@@ -25,10 +27,10 @@
                         </a>
                         <ul class="collapse list-unstyled" id="userSubmenu">
                             <li>
-                                <a href="{{ path('user_index') }}"><i class="fas fa-users"></i> <span class="navsubtitle">Liste des utilisateurs</span></a>
+                                <a href="{{ path('user_index') }}"><i class="fas fa-users iconesubtitle"></i> <span class="navsubtitle">Liste des utilisateurs</span></a>
                             </li>
                             <li>
-                                <a href="{{ path('user_new') }}"><i class="fas fa-plus-circle"></i> <span class="navsubtitle">Créer un utilisateur
+                                <a href="{{ path('user_new') }}"><i class="fas fa-plus-circle iconesubtitle"></i> <span class="navsubtitle">Créer un utilisateur
                                 </span></a>
                             </li>
 
@@ -36,20 +38,21 @@
                     </li>
                     <li>
                         <a href="#lobbySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                                <span class="navtitle"><i class="fas fa-door-open"></i> Gestion des salons</span>
+                            <i class="fas fa-door-open"></i>    
+                            <span class="navtitle"> Gestion des salons</span>
                         </a>
                         <ul class="collapse list-unstyled" id="lobbySubmenu">
                             <li>
-                                <a href="{{ path('lobby_new') }}"><i class="fas fa-plus-circle"></i> <span class="navsubtitle">Créer un salon</span></a>
+                                <a href="{{ path('lobby_new') }}"><i class="fas fa-plus-circle iconesubtitle"></i> <span class="navsubtitle">Créer un salon</span></a>
                             </li>
                             <li>
-                                <a href="{{ path('lobby_index_active') }}"><i class="fas fa-door-open"></i> <span class="navsubtitle">Salons actifs</span></a>
+                                <a href="{{ path('lobby_index_active') }}"><i class="fas fa-door-open iconesubtitle"></i> <span class="navsubtitle">Salons actifs</span></a>
                             </li>
                             <li>
-                                <a href="{{ path('lobby_index_inactive') }}"><i class="fas fa-door-closed"></i> <span class="navsubtitle">Salons inactifs</span></a>
+                                <a href="{{ path('lobby_index_inactive') }}"><i class="fas fa-door-closed iconesubtitle"></i> <span class="navsubtitle">Salons inactifs</span></a>
                             </li>
                             <li>
-                                <a href="{{ path('lobby_index') }}"><i class="fas fa-door-closed"></i> <span class="navsubtitle">Tous les salons</span></a>
+                                <a href="{{ path('lobby_index') }}"><i class="fas fa-globe iconesubtitle"></i> <span class="navsubtitle">Tous les salons</span></a>
                             </li>
                         </ul>
                     </li>
@@ -60,10 +63,10 @@
                         </a>
                         <ul class="collapse list-unstyled" id="jobSubmenu">
                             <li>
-                                <a href="{{ path('profession_index') }}"><span class="navsubtitle"><i class="fas fa-briefcase"></i>Tous les métiers</span></a>
+                                <a href="{{ path('profession_index') }}"><i class="fas fa-briefcase iconesubtitle"></i><span class="navsubtitle">Tous les métiers</span></a>
                             </li>
                             <li>
-                                <a href="{{ path('profession_new') }}"><i class="fas fa-plus-circle"></i> <span class="navsubtitle">Créer un métier</span></a>
+                                <a href="{{ path('profession_new') }}"><i class="fas fa-plus-circle iconesubtitle"></i> <span class="navsubtitle">Créer un métier</span></a>
                             </li>
                         </ul>
                     </li>

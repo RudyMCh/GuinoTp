@@ -53,7 +53,9 @@ class MainController extends AbstractController{
             if(!$lobby->getActive()){
                 throw new NotFoundHttpException('Salon inactif');
             }
+            $em = $this->getDoctrine()->getManager();
             $user = $session->get('account');
+            $user=$em->merge($user);
             $docs = $lobby->getDocs();
             $messages = $lobby->getMessages();
             $users = $lobby->getUser();
@@ -63,7 +65,6 @@ class MainController extends AbstractController{
                 $lr=$this->getDoctrine()->getRepository(Lobby::class);
                 $lobby = $lr->findOneById($lobbyId);
                 dump($content);
-                $em = $this->getDoctrine()->getManager();
                 $message = new Message();
                 $message->setContent($content);
                 $message->setCreatedAt(new DateTime);
@@ -71,7 +72,7 @@ class MainController extends AbstractController{
                 $message->setLobby($lobby);
                 $em->persist($message);
                 $em->flush();
-                return $this->render('tchat.html.twig', ["success" => true, "id" => $id, "messages" => $messages, "docs" => $docs, "users" => $users]);
+                return $this->render('tchat.html.twig', ["success" => true, "id" => $id, "messages" => $messages, "docs" => $docs, "users" => $users, "lobby" => $lobby]);
             }
 
 

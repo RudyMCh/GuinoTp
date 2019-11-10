@@ -27,13 +27,13 @@ class Message
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Lobby", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Lobby", inversedBy="messages", cascade={"persist", "remove"})
      */
     private $lobby;
 

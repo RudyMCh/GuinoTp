@@ -24,7 +24,7 @@
     
             <!-- users -->
             <div  class="col-2 bg-color-cyan pt-3 text-white text-left sidebarChild">
-                <h2 class="text-center sidebarChild ">Utilisateurs</h2> 
+                <h2 class="text-center sidebarChild ">Utilisateurs salon</h2> 
                 <ul >
                     {% for user in users %}
                     <li class="sidebarChild">
@@ -33,6 +33,14 @@
                     </li>
                     {% endfor %}
                 </ul>
+                <ul>
+                    <li>
+                        <a href="{{ path('doc_new') }}">ajouter une photo</a>
+                    </li>
+                </ul>
+                {% for doc in docs %}
+                    <a href="{{ asset('images/docs/') }}{{ doc.filename }}" style="object-fit:contain"><img src="{{ asset('images/docs/') }}{{ doc.filename }}" alt="{{ doc.filename }}" style="max-width:100px;"></a>
+                {% endfor %}
             </div> 
     
         <!-- footer and textarea -->

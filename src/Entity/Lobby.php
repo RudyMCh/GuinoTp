@@ -50,7 +50,7 @@ class Lobby
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby", cascade={"persist","remove"})
      */
     private $messages;
 
@@ -64,12 +64,14 @@ class Lobby
      */
     private $user;
 
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
         $this->user = new ArrayCollection();
+
     }
 
     public function getId(): ?int

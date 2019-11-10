@@ -49,7 +49,7 @@ class User
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user", cascade={"persist", "remove"})
      */
     private $messages;
 
@@ -74,12 +74,18 @@ class User
      */
     private $lobbies;
 
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->docs = new ArrayCollection();
         $this->lobbies = new ArrayCollection();
+
+    }
+
+    public function __toString(){
+        return $this->email;
     }
 
     public function getId(): ?int
@@ -273,4 +279,5 @@ class User
 
         return $this;
     }
+
 }

@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Lobby;
 use App\Entity\User;
+use App\Entity\Doc;
+use App\Entity\Message;
 use App\Form\FileType;
 use App\Repository\FileRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \DateTime;
+
 
 class MainController extends AbstractController{
     /**
@@ -37,33 +41,43 @@ class MainController extends AbstractController{
     /**
      * @Route("tchat/{id}", name="tchat", requirements={"id"="[1-9][0-9]{0,10}"})
      */
-    public function tchat($id)
+    public function tchat($id, Request $request)
     {
-        $session = $this->get('session');
-        $lr = $this->getDoctrine()->getRepository(Lobby::class);
-        $lobby = $lr->findOneById($id);
-        $user = $session->get('account');
-        dump($user);
-        $ur = $this->getDoctrine()->getRepository(User::class);
-        $users = $ur->findByLobby($lobby);
-        dump($users);
         $session = $this->get('session');
         if(!$session->has('account')){
             //si pas connecté, rejetté
             return $this->redirectToRoute('login');
         }else{
+            $lr = $this->getDoctrine()->getRepository(Lobby::class);
+            $lobby = $lr->findOneById($id);
             if(!$lobby->getActive()){
                 throw new NotFoundHttpException('Salon inactif');
             }
-
-            $messages = $lobby->getMessages();
+            $user = $session->get('account');
             $docs = $lobby->getDocs();
-            return $this->render('tchat.html.twig', ["id" => $id, "messages" => $messages, "docs" => $docs]);
+            $messages = $lobby->getMessages();
+            $users = $lobby->getUser();
+            if($request->isMethod("post")){
+                $content=$request->request->get('message');
+                $lobbyId=$request->request->get('id');
+                $lr=$this->getDoctrine()->getRepository(Lobby::class);
+                $lobby = $lr->findOneById($lobbyId);
+                dump($content);
+                $em = $this->getDoctrine()->getManager();
+                $message = new Message();
+                $message->setContent($content);
+                $message->setCreatedAt(new DateTime);
+                $message->setUser($user);
+                $message->setLobby($lobby);
+                $em->persist($message);
+                $em->flush();
+                return $this->render('tchat.html.twig', ["success" => true, "id" => $id, "messages" => $messages, "docs" => $docs, "users" => $users]);
+            }
 
+
+            return $this->render('tchat.html.twig', ["id" => $id, "messages" => $messages, "docs" => $docs, "users" => $users]);
 
         }
-
-
     }
 
     /**
@@ -73,7 +87,11 @@ class MainController extends AbstractController{
     {
         $session = $this->get('session');
         $user = $session->get('account');
-        $myLobbies = $user->getLobby();
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->merge($user);
+        $myLobbies = $user->getLobbies();
+        dump($user);
+        dump($myLobbies);
 
         return $this->render('myLobbies.html.twig', ["myLobbies" => $myLobbies]);
     }

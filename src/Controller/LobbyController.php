@@ -78,7 +78,7 @@ class LobbyController extends AbstractController
     public function show(Lobby $lobby): Response
     {
 
-        $users = $lobby->getUsers();
+        $users = $lobby->getUser();
         dump($users);
         $usersName=[];
         foreach($users as $user){

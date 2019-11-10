@@ -50,7 +50,7 @@ class Lobby
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby")
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="lobby", cascade={"persist"})
      */
     private $messages;
 

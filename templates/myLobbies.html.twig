@@ -6,7 +6,8 @@
     <ul>
         {% for lobby in myLobbies %}
         <li>
-            {{ lobby.name }} {{ lobby.city }}
+            <a href="{{ path('tchat', { "id": lobby.id }) }}">{{ lobby.name }} {{ lobby.city }}</a>
+            
         </li>
         {% endfor %}
     </ul>

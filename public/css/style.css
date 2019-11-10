@@ -15,7 +15,18 @@
     text-align:center;
     background-color: rgba(224, 100, 100, 0.8);
   }
+  .bg-color-cyan{ 
+      background-color:#7386D5;
+ }
 
+ #sidebarLobby{
+     min-height:100vh;
+     display:flex;
+ }
+
+ .sidebarChild{
+     flex-direction:column;
+ }
 
 
 #main-header .nav li a{

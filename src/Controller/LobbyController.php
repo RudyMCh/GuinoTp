@@ -25,6 +25,24 @@ class LobbyController extends AbstractController
             'lobbies' => $lobbyRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/", name="lobby_index_active", methods={"GET"})
+     */
+    public function indexActive(LobbyRepository $lobbyRepository): Response
+    {
+        return $this->render('lobby/index_active.html.twig', [
+            'lobbies' => $lobbyRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/", name="lobby_index_inactive", methods={"GET"})
+     */
+    public function indexInactive(LobbyRepository $lobbyRepository): Response
+    {
+        return $this->render('lobby/index_inactive.html.twig', [
+            'lobbies' => $lobbyRepository->findAll(),
+        ]);
+    }
 
     /**
      * @Route("/new", name="lobby_new", methods={"GET","POST"})

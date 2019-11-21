@@ -15,7 +15,18 @@
     text-align:center;
     background-color: rgba(224, 100, 100, 0.8);
   }
+  .bg-color-cyan{ 
+      background-color:#7386D5;
+ }
 
+ #sidebarLobby{
+     min-height:100vh;
+     display:flex;
+ }
+
+ .sidebarChild{
+     flex-direction:column;
+ }
 
 
 #main-header .nav li a{
@@ -66,7 +77,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -260,6 +271,10 @@ a.article:hover {
     transition: all 0.3s;
 }
 
+.addUserBtn a:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -321,3 +336,9 @@ a.article:hover {
         display: none;
     }
 }
+
+.btn-outline-success:hover{
+    background-color: (rgba(48, 190, 13, 0.1))
+}
+
+

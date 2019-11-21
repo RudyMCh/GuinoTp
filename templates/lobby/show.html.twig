@@ -35,6 +35,12 @@
                 <th>Active</th>
                 <td>{{ lobby.active ? 'Yes' : 'No' }}</td>
             </tr>
+            {% for user in users %}
+            <tr>
+                <th>utilisateurs</th>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 

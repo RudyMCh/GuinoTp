@@ -19,8 +19,8 @@
                 <td>{{ profession.id }}</td>
                 <td>{{ profession.name }}</td>
                 <td>
-                    <a href="{{ path('profession_show', {'id': profession.id}) }}">Voir</a>
-                    <a href="{{ path('profession_edit', {'id': profession.id}) }}">Modifier</a>
+                    <a href="{{ path('profession_show', {'id': profession.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('profession_edit', {'id': profession.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +30,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('profession_new') }}">Créer un nouveau métier</a>
+    <a href="{{ path('profession_new') }}" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Créer un nouveau salon"><i class="fas fa-plus-square fa-5x text-success"></i></a>
 {% endblock %}

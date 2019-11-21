@@ -24,7 +24,7 @@ class Profession
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="profession")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="profession", cascade={"persist", "remove"})
      */
     private $users;
 

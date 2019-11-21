@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lobby;
+use App\Entity\User;
 use App\Form\LobbyType;
 use App\Repository\LobbyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,8 +55,11 @@ class LobbyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $lobby->setCreatedAt(new Datetime());
+            dump($request);
+            $session=$this->get('session');
+            $user = $session->get('account');
             $entityManager = $this->getDoctrine()->getManager();
+            $lobby->setCreatedAt(new Datetime());
             $entityManager->persist($lobby);
             $entityManager->flush();
 
@@ -73,8 +77,19 @@ class LobbyController extends AbstractController
      */
     public function show(Lobby $lobby): Response
     {
+
+        $users = $lobby->getUser();
+        dump($users);
+        $usersName=[];
+        foreach($users as $user){
+            $usersName[]=$user->getLastname();
+        }
+        dump($usersName);
+        $ur = $this->getDoctrine()->getRepository(User::class);
+
         return $this->render('lobby/show.html.twig', [
             'lobby' => $lobby,
+            "users" => $users
         ]);
     }
 

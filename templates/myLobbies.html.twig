@@ -2,11 +2,12 @@
 {% block body %}
 
 <div class="container">
-    <h1>mes salons</h1>
+    <h1>Mes salons</h1>
     <ul>
         {% for lobby in myLobbies %}
         <li>
-            {{ lobby.name }} {{ lobby.city }}
+            <a href="{{ path('tchat', { "id": lobby.id }) }}">{{ lobby.name }} {{ lobby.city }}</a>
+            
         </li>
         {% endfor %}
     </ul>

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>user et salon</h1>
+
+<form action="" method="POST" class="col-md-6">
+    <select name="id" >
+        {% for user in users %}
+            <option value="{{user.id}}">{{ user.firstname }} {{ user.lastname }}</option>
+        {% endfor %}
+
+    </select>
+    <select name="lobby" >
+        {% for lobby in lobbies %}
+            <option value="{{lobby.name}}">{{ lobby.name }}</option>
+        {% endfor %}
+
+    </select>
+    <input type="submit" class="btn btn-primary">
+
+</form>
+
+{% endblock %}

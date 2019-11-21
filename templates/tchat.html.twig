@@ -1,9 +1,73 @@
 {% extends "base.html.twig" %}
 
-{% block title %}tchate{% endblock %}
+{% block title %}tchat{% endblock %}
 
 {% block body %}
-<div class="container">
+
+
+        <!-- old header -->
+        <!-- <div class="row">
+            <div class="col-12 bg-color-cyan text-white">
+                <h1 class="text-center">salon</h1>
+                <div class="row pt-3 pb-3 mx-auto">
+                    <div class="col-10 row mx-auto">
+                        <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#1</div>
+                        <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#2</div>
+                        <div class="border col-1 offset-1 pt-5 pb-5 text-center">canal#3</div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    
+        <!-- big-div height : 100% of 100viewport-height -->
+        <div class="row h-100" id="sidebarLobby">
+    
+            <!-- users -->
+            <div  class="col-2 bg-color-cyan pt-3 text-white text-left sidebarChild">
+                <h2 class="text-center sidebarChild ">Utilisateurs salon</h2> 
+                <ul >
+                    {% for user in users %}
+                    <li class="sidebarChild">
+                        {{ user.firstname }} {{ user.lastname }}
+
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{{ path('doc_new') }}">ajouter une photo</a>
+                    </li>
+                </ul>
+                {% for doc in docs %}
+                    <a href="{{ asset('images/docs/') }}{{ doc.filename }}" style="object-fit:contain"><img src="{{ asset('images/docs/') }}{{ doc.filename }}" alt="{{ doc.filename }}" style="max-width:100px;"></a>
+                {% endfor %}
+            </div> 
+    
+        <!-- footer and textarea -->
+            <div class="col-10 bg-white pt-3 text-black">
+            <!-- textarea -->
+                {% for message in messages %}
+                    <p>{{ message.createdAt|date("Y-m-d") }} par {{ message.user.lastname }}</p>
+                    <p>{{ message.content }}</p>
+                {% endfor %}
+            <!-- footer ?fixed-bottom -->
+                <div class="bg-color-cyan offset-2 fixed-bottom">
+                    <form action="" method="post" class="form-group basic-textarea row pt-3 pb-3 col-10 offset-1">
+                        <input type="text" class="form-control bg-white text-black col-10 pl-5" placeholder="Message" name="message">
+                        <input type="hidden" name="id" value="{{ id }}">
+                        <span class="input-group-btn pl-2">
+                            <button type="submit" class="btn btn-info">Envoyer</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+    
+        <!-- close h- bigdiv -->
+        </div>
+    
+    <!-- close maindiv -->
+
+<!-- <div class="container">
     <div class="row">
         <div class="col-10 message" id="messageDisplay">
             <p>salut !</p>
@@ -23,7 +87,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}
 
 {% block script %}

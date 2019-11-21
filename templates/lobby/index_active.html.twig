@@ -31,8 +31,8 @@
             <td>{{ lobby.zipcode }}</td>
             <td>{{ lobby.active ? 'Yes' : 'No' }}</td>
             <td>
-                <a href="{{ path('lobby_show', {'id': lobby.id}) }}">show</a>
-                <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">edit</a>
+                <a href="{{ path('lobby_show', {'id': lobby.id}) }}">Voir</a>
+                <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">Modifier</a>
             </td>
         </tr>
         {% endif %}
@@ -40,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('lobby_new') }}">Create new</a>
+    <a href="{{ path('lobby_new') }}"> <i class="fas fa-plus-circle iconesubtitle"></i> </a>
 {% endblock %}
